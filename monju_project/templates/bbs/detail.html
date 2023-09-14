@@ -1,0 +1,11 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    <h1>{{ article.id }}の個別投稿ページ</h1>
+    <p>{{ article.content }}, {{article.user_name }}</p>
+    <div>
+      <button onclick='location.href="{% url "bbs:index" %}"'>一覧</button>
+      <button onclick='location.href="{% url "bbs:edit" article.id %}"'>編集</button>
+      <button onclick='location.href="{% url "bbs:delete" article.id %}"'>削除</button>
+    </div>
+{% endblock %}

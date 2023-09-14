@@ -1,0 +1,12 @@
+{% extends "./base.html" %}
+
+{% block content %}
+  <h1>Djangoで作る新規投稿フォーム</h1>
+
+  <form action='{% url "bbs:create" %}' method="post">
+    {% csrf_token %}<!-- セキュリティのための記述 -->
+    {{ articleForm }}<!-- views.pyから受け取ったarticleFormを表示 -->
+    <button type='submit'>投稿</button>
+    <a href='{% url "bbs:index" %}'>一覧ページへ戻る</a>
+  </form>
+{% endblock %}

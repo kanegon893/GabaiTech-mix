@@ -1,0 +1,28 @@
+{% extends "./base.html" %}
+
+{% block content %}
+  <h1>Djangoで作る1行掲示板</h1>
+
+  {% if searchForm %}
+    <form action='{% url "bbs:index" %}' method="get">
+      <div>
+        {{ searchForm }}
+        <input type="submit" value="検索">
+        <a href='{% url "bbs:index" %}'>クリア</a>
+      </div>
+    </form>
+  {% endif %}
+
+  {% for article in articles %}
+    <p>
+      <a href='{% url "bbs:detail" article.id %}'>{{ article.content }}</a>
+      {{ article.user_name }}
+    </p>
+  {% endfor %}
+
+  <!-- 新規投稿ページへの遷移ボタン -->
+  <p>
+    <button onclick='location.href="{% url "bbs:new" %}"'>新規投稿</button>
+  </p>
+
+{% endblock %}
